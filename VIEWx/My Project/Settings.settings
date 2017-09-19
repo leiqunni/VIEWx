@@ -1,5 +1,55 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" UseMySettingsClassName="true">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
   <Profiles />
-  <Settings />
+  <Settings>
+    <Setting Name="WindowSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">480, 270</Value>
+    </Setting>
+    <Setting Name="SizeMode" Type="System.Windows.Forms.PictureBoxSizeMode" Scope="User">
+      <Value Profile="(Default)">Zoom</Value>
+    </Setting>
+    <Setting Name="StatusBar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="WindowLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="KeyConf" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0 008 prev
+0 013 next
+0 032 aczo
+0 037 prev
+0 039 next
+0 077 mbar
+4 037 lprv
+4 039 lnxt</Value>
+    </Setting>
+    <Setting Name="MenuBar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="HScrollBar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Extension" Type="System.String" Scope="User">
+      <Value Profile="(Default)">bmp emf gif ico jpg png tiff</Value>
+    </Setting>
+    <Setting Name="TitleText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%name% [%current%/%count%] - dePic</Value>
+    </Setting>
+    <Setting Name="StatusText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Size %width% x %height% Modefied %modefied% Length %length_ki% KB</Value>
+    </Setting>
+    <Setting Name="Glass" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DirRecur" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SortType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SortOrder" Type="System.Windows.Forms.SortOrder" Scope="User">
+      <Value Profile="(Default)">Ascending</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

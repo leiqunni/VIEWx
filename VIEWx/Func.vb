@@ -1,101 +1,203 @@
 ﻿Imports System.IO
+Imports System.Text.RegularExpressions
 
-Partial Class FormMain
+Partial Class Form1
 
-    '// 画像表示
-    Public Sub Fn_LoadImage(ByVal fn As String, ByVal pic As PictureBox)
-        '// [ウィンドウに収める]の処理
-        If mnuViewInWindow.Checked Then mnuViewInWindow_Click(Nothing, Nothing)
+    Private Sub InitWindow()
+        Me.Location = My.Settings.WindowLocation
+        Me.Size = My.Settings.WindowSize
+        Fn_SizeMode(My.Settings.SizeMode)
+        Fn_MenuBar(My.Settings.MenuBar)
+        Fn_HScrollBar(My.Settings.HScrollBar)
+        Fn_StatusBar(My.Settings.StatusBar)
+        Fn_SetSortType(My.Settings.SortType)
+        Fn_SetSortOrder(My.Settings.SortOrder)
+    End Sub
 
-        '// 画像によってアイコン変更
-        If pic.Image.RawFormat.ToString.ToUpper.Contains("B96B3CAB") Then Me.Icon = My.Resources._1602
-        If pic.Image.RawFormat.ToString.ToUpper.Contains("B96B3CB0") Then Me.Icon = My.Resources._1603
-        If pic.Image.RawFormat.ToString.ToUpper.Contains("B96B3CAE") Then Me.Icon = My.Resources._1604
-        If pic.Image.RawFormat.ToString.ToUpper.Contains("B96B3CAF") Then Me.Icon = My.Resources._1605
-        If fn.ToLower.EndsWith(".wdp") Or fn.ToLower.EndsWith(".hdp") Then Me.Icon = My.Resources._1606
+    Private Sub Fn_LoadList(ByVal strs() As String)
+        PicList.Clear()
 
-        '// タイトルバーにファイル名表示
-        Me.Text = Path.GetFileName(fn) & " [" & HScrollBar.Value + 1 & "/" & fileEntries.Count & "] - " & appName
-        'Me.Text = fileName & " [" & HScrollBar1.Value + 1 & "/" & fileEntries.Count & "] - " & appName
+        Dim isOneFile As Boolean = False
+        For Each str As String In strs
+            If File.Exists(str) Then
+                If strs.Length = 1 Then
+                    Sub_DirAddList(Path.GetDirectoryName(str))
+                    isOneFile = True
+                Else
+                    If Regex.IsMatch(str, RegExt) Then
+                        PicList.Add(New FileInfo(str))
+                    End If
+                End If
+            ElseIf Directory.Exists(str) Then
+                Sub_DirAddList(str)
+            End If
+        Next
 
-        '// ステータスバーが表示されてるなら情報表示。
-        If tsStatusBar.Visible Then
-            Dim fi As New IO.FileInfo(fn)
-            ToolStripStatusLabel1.Text = "大きさ: " & pic.Image.Width & " x " & pic.Image.Height & " サイズ: " & (fi.Length / 1024).ToString("#,##0") & " KB"
+        If PicList.Count = 0 Then Return
+
+        HScrollBar1.Minimum = 0
+        HScrollBar1.Value = 0
+
+        If PicList.Count > 10 Then
+            HScrollBar1.Maximum = PicList.Count - 1 + 10 - 1
+            HScrollBar1.LargeChange = 10
+        Else
+            HScrollBar1.Maximum = PicList.Count - 1
+            HScrollBar1.LargeChange = 1
+        End If
+
+        '// sort
+        Fn_Sort(My.Settings.SortType, My.Settings.SortOrder)
+
+        Dim n As Integer = 0
+
+        If isOneFile Then
+            For i As Integer = 0 To PicList.Count - 1
+                If PicList(n).FullName = strs(0) Then
+                    Exit For
+                End If
+                n = i
+            Next
+        End If
+
+        HScrollBar1.Value = n
+        Fn_PicLoad(n)
+    End Sub
+
+    Private Sub Sub_DirAddList(ByVal dir As String)
+        Dim d As New DirectoryInfo(dir)
+        If My.Settings.DirRecur Then
+            For Each di As DirectoryInfo In d.GetDirectories
+                Sub_DirAddList(di.FullName)
+            Next
+        End If
+        For Each fi As FileInfo In d.GetFiles
+            If Regex.IsMatch(fi.Extension, RegExt) Then
+                PicList.Add(fi)
+            End If
+        Next
+    End Sub
+
+    Private Sub Control_Centered(ByRef rec As Rectangle)
+        rec.X = (Panel1.Width - rec.Width) / 2
+        rec.Y = (Panel1.Height - rec.Height) / 2
+    End Sub
+
+    Private Sub Fn_PicLoad(ByVal n As Integer)
+        Try
+            Dim buffer() = File.ReadAllBytes(PicList(n).FullName)
+            Dim stream As MemoryStream = New MemoryStream(buffer)
+            PictureBox1.Image = Image.FromStream(stream)
+        Catch ex As Exception
+            lblStatus.Text = ex.ToString
+        End Try
+
+        If PictureBox1.SizeMode = PictureBoxSizeMode.AutoSize Then
+            Control_Centered(PictureBox1.Bounds)
+        End If
+
+        Me.Text = Fn_FormatText(My.Settings.TitleText)
+        If StatusStrip1.Visible Then
+            lblStatus.Text = Fn_FormatText(My.Settings.StatusText)
         End If
     End Sub
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    Private Sub Fn_HScrollbar(ByVal value As Boolean)
-        tsStatusBar.Visible = value
-        mnuViewHScrollBar.Checked = value
+    Private Sub Fn_Prev(Optional ByVal n As Integer = 1)
+        If HScrollBar1.Value - n >= 0 Then
+            HScrollBar1.Value -= n
+        Else
+            HScrollBar1.Value = PicList.Count - 1
+        End If
     End Sub
 
-    Private Sub Fn_StatusBar(ByVal value As Boolean)
-        tsStatusBar.Visible = value
-        mnuViewStatusBar.Checked = value
+    Private Sub Fn_Next(Optional ByVal n As Integer = 1)
+        If HScrollBar1.Value + n <= PicList.Count - 1 Then
+            HScrollBar1.Value += n
+        Else
+            HScrollBar1.Value = 0
+        End If
     End Sub
 
-    Private Sub Fn_Bestfit()
-        PictureBox1.SizeMode = PictureBoxSizeMode.Zoom
-        PictureBox1.Dock = DockStyle.Fill
-
-        mnuViewBestfit.Checked = True '// ウィンドウに合わせる
-        mnuViewInWindow.Checked = False '// ウィンドウに収める
-        mnuViewActual.Checked = False '// 原寸大
-        tsbBestfit.Enabled = False '// ウィンドウに合わせる
-        tsbInWindow.Enabled = True '// ウィンドウに収める
-        tsbActual.Enabled = True '// 原寸大
+    Private Sub Fn_OpenFileDialog()
+        Dim sb As New System.Text.StringBuilder
+        For Each item As String In My.Settings.Extension.Split(" ".ToCharArray, StringSplitOptions.RemoveEmptyEntries)
+            sb.Append("*." & item.Trim & ";")
+        Next
+        OpenFileDialog1.Filter = "All Picture Files|" & sb.ToString & "|" & "All Files|*.*"
+        If OpenFileDialog1.ShowDialog = DialogResult.OK Then
+            Fn_LoadList(OpenFileDialog1.FileNames)
+        End If
     End Sub
 
-    Private Sub Fn_Actual()
-        Fn_Actual(PictureBox1)
-
-        mnuViewBestfit.Checked = False '// ウィンドウに合わせる
-        mnuViewInWindow.Checked = False '// ウィンドウに収める
-        mnuViewActual.Checked = True '// 原寸大
-        tsbBestfit.Enabled = True '// ウィンドウに合わせる
-        tsbInWindow.Enabled = True '// ウィンドウに収める
-        tsbActual.Enabled = False '// 原寸大
+    Private Sub Fn_SizeMode(ByVal v As PictureBoxSizeMode)
+        PictureBox1.SizeMode = v
+        Select Case v
+            Case PictureBoxSizeMode.AutoSize
+                PictureBox1.Dock = DockStyle.None
+                Control_Centered(PictureBox1.Bounds)
+            Case PictureBoxSizeMode.StretchImage, PictureBoxSizeMode.Zoom
+                PictureBox1.Dock = DockStyle.Fill
+        End Select
+        mnuViewStretch.Checked = (v = PictureBoxSizeMode.StretchImage)
+        mnuViewActual.Checked = (v = PictureBoxSizeMode.AutoSize)
+        mnuViewZoom.Checked = (v = PictureBoxSizeMode.Zoom)
     End Sub
 
-    Private Sub Fn_Actual(ByVal pic As PictureBox)
-        pic.SizeMode = PictureBoxSizeMode.CenterImage
-        pic.Dock = DockStyle.None
-
-        Try
-            pic.Width = pic.Image.Width
-            pic.Height = pic.Image.Height
-        Catch ex As Exception
-            pic.Width = pic.Parent.Width 'SplitContainer1.Panel1.Width
-            pic.Height = pic.Parent.Height 'SplitContainer1.Panel1.Height
-        End Try
-
-        pic.Left = (pic.Parent.Width - pic.Width) / 2
-        pic.Top = (pic.Parent.Height - pic.Height) / 2
+    Private Sub Fn_MenuBar(ByVal v As Boolean)
+        MenuStrip1.Visible = v
+        mnuViewMenuBar.Checked = v
+        My.Settings.MenuBar = v
     End Sub
 
-    Private Sub Fn_RotateLeft()
-        PictureBox1.Image.RotateFlip(RotateFlipType.Rotate270FlipNone)
-        PictureBox1.Refresh()
+    Private Sub Fn_HScrollBar(ByVal v As Boolean)
+        HScrollBar1.Visible = v
+        mnuViewHScrollBar.Checked = v
+        My.Settings.HScrollBar = v
     End Sub
 
-    Private Sub Fn_RotateRight()
-        PictureBox1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone)
-        PictureBox1.Refresh()
+    Private Sub Fn_StatusBar(ByVal v As Boolean)
+        StatusStrip1.Visible = v
+        mnuViewStatusBar.Checked = v
+        My.Settings.StatusBar = v
+    End Sub
+
+    Private Function Fn_FormatText(ByVal s As String) As String
+        If PictureBox1.Image Is Nothing Then Return ""
+
+        s = s.Replace("%name%", PicList(HScrollBar1.Value).Name)
+        s = s.Replace("%current%", HScrollBar1.Value + 1)
+        s = s.Replace("%count%", PicList.Count)
+        s = s.Replace("%width%", PictureBox1.Image.Size.Width)
+        s = s.Replace("%height%", PictureBox1.Image.Size.Height)
+        s = s.Replace("%modefied%", PicList(HScrollBar1.Value).LastWriteTime.ToString)
+        s = s.Replace("%length_ki%", Math.Floor(PicList(HScrollBar1.Value).Length / 1024))
+        Return s
+    End Function
+
+    'Private Sub Fn_Zoom(ByVal value As Double, Optional ByVal reset As Boolean = False)
+    '    If reset Then
+    '    Else
+    '    End If
+    'End Sub
+
+    Private Sub Fn_NormalZoon()
+        If PictureBox1.SizeMode = PictureBoxSizeMode.AutoSize Then
+            Fn_SizeMode(PictureBoxSizeMode.Zoom)
+        Else
+            Fn_SizeMode(PictureBoxSizeMode.AutoSize)
+        End If
+    End Sub
+
+    Private Sub Fn_LoadKeyConf()
+        'KeyConf.Clear()
+        For Each line As String In My.Settings.KeyConf.Split(vbCrLf)
+            If line.StartsWith("#") Then Continue For
+            Dim param() As String = line.Split(" ".ToCharArray, 3, StringSplitOptions.RemoveEmptyEntries)
+            Dim key As String = String.Format("{0:0}{1:000}", param(0).Trim, param(1).Trim)
+            If param.Length = 3 Then
+                KeyConf.Add(key, param(2).ToLower.Trim)
+            End If
+        Next
     End Sub
 
 End Class

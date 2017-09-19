@@ -53,6 +53,175 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("480, 270")>  _
+        Public Property WindowSize() As Global.System.Drawing.Size
+            Get
+                Return CType(Me("WindowSize"),Global.System.Drawing.Size)
+            End Get
+            Set
+                Me("WindowSize") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Zoom")>  _
+        Public Property SizeMode() As Global.System.Windows.Forms.PictureBoxSizeMode
+            Get
+                Return CType(Me("SizeMode"),Global.System.Windows.Forms.PictureBoxSizeMode)
+            End Get
+            Set
+                Me("SizeMode") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property StatusBar() As Boolean
+            Get
+                Return CType(Me("StatusBar"),Boolean)
+            End Get
+            Set
+                Me("StatusBar") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property WindowLocation() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("WindowLocation"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("WindowLocation") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0 008 prev"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"0 013 next"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"0 032 aczo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"0 037 prev"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"0 039 next"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"0 077 mbar"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"4 037 lpr"& _ 
+            "v"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"4 039 lnxt")>  _
+        Public Property KeyConf() As String
+            Get
+                Return CType(Me("KeyConf"),String)
+            End Get
+            Set
+                Me("KeyConf") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property MenuBar() As Boolean
+            Get
+                Return CType(Me("MenuBar"),Boolean)
+            End Get
+            Set
+                Me("MenuBar") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property HScrollBar() As Boolean
+            Get
+                Return CType(Me("HScrollBar"),Boolean)
+            End Get
+            Set
+                Me("HScrollBar") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("bmp emf gif ico jpg png tiff")>  _
+        Public Property Extension() As String
+            Get
+                Return CType(Me("Extension"),String)
+            End Get
+            Set
+                Me("Extension") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("%name% [%current%/%count%] - dePic")>  _
+        Public Property TitleText() As String
+            Get
+                Return CType(Me("TitleText"),String)
+            End Get
+            Set
+                Me("TitleText") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Size %width% x %height% Modefied %modefied% Length %length_ki% KB")>  _
+        Public Property StatusText() As String
+            Get
+                Return CType(Me("StatusText"),String)
+            End Get
+            Set
+                Me("StatusText") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property Glass() As Boolean
+            Get
+                Return CType(Me("Glass"),Boolean)
+            End Get
+            Set
+                Me("Glass") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property DirRecur() As Boolean
+            Get
+                Return CType(Me("DirRecur"),Boolean)
+            End Get
+            Set
+                Me("DirRecur") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property SortType() As Integer
+            Get
+                Return CType(Me("SortType"),Integer)
+            End Get
+            Set
+                Me("SortType") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Ascending")>  _
+        Public Property SortOrder() As Global.System.Windows.Forms.SortOrder
+            Get
+                Return CType(Me("SortOrder"),Global.System.Windows.Forms.SortOrder)
+            End Get
+            Set
+                Me("SortOrder") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
