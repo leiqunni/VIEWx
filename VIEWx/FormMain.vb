@@ -57,38 +57,12 @@ Public Class FormMain
     Private Sub getFiles(ByVal target As String)
         Dim fileName, value As String
 
-        If File.Exists(target) Then '// ファイルなら
-            If target.ToLower.EndsWith(".lzh") Then '// lzhファイルなら
-                '// テンポラリディレクトリの作成
-                tmpDirectory = Path.GetTempPath & "viewx." & Path.GetRandomFileName & "\"
-                Directory.CreateDirectory(tmpDirectory)
-                '// 書庫のリストを読み込む
-                getFilesLha.getFilesLha(target)
-                targetType = 2
-                Return
-            ElseIf target.ToLower.EndsWith(".zip") Then '// zipファイルなら
-                '// テンポラリディレクトリの作成
-                tmpDirectory = Path.GetTempPath & "viewx." & Path.GetRandomFileName & "\"
-                Directory.CreateDirectory(tmpDirectory)
-                '// 書庫のリストを読み込む
-                getFilesZip.getFilesZip(target)
-                targetType = 3
-                Return
-            ElseIf target.ToLower.EndsWith(".rar") Then '// rarファイルなら
-                '// テンポラリディレクトリの作成
-                tmpDirectory = Path.GetTempPath & "viewx." & Path.GetRandomFileName & "\"
-                Directory.CreateDirectory(tmpDirectory)
-                '// 書庫のリストを読み込む
-                getFilesRar.getFilesRar(target)
-                targetType = 4
-                Return
-            Else
-                readPictureFile1(target)
-                fileName = target
-                target = Path.GetDirectoryName(target)
-                targetType = 0
-            End If
-        Else '// ディレクトリなら
+        If File.Exists(target) Then '// is file
+            readPictureFile1(target)
+            fileName = target
+            target = Path.GetDirectoryName(target)
+            targetType = 0
+        Else '// is directory
             targetType = 1
         End If
 
@@ -100,7 +74,7 @@ Public Class FormMain
             End If
         Next value
 
-        '// ソート
+        '// sort
         If mnuViewOrderName.Checked Then mnuViewOrderName_Click(Nothing, Nothing)
         If mnuViewOrderNameNum.Checked Then mnuViewOrderNameNum_Click(Nothing, Nothing)
         If mnuViewOrderType.Checked Then mnuViewOrderType_Click(Nothing, Nothing)

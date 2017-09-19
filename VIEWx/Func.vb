@@ -4,30 +4,6 @@ Partial Class FormMain
 
     '// 画像表示
     Public Sub Fn_LoadImage(ByVal fn As String, ByVal pic As PictureBox)
-        '// 書庫なら
-        If targetType = 2 Then
-            '// 動作中かチェック
-            If UnlhaGetRunning() Then Return
-            '// 同名のファイルがあるなら展開しない
-            If Not IO.File.Exists(tmpDirectory & fn) Then
-                Unlha(Nothing, "x -n1 """ & targetFile & """ """ & tmpDirectory & """ """ & fn & """", Nothing, 0)
-            End If
-            '// テンポラリディレクトリをくっつける
-            fn = tmpDirectory & fn
-        ElseIf targetType = 3 Then
-            If UnZipGetRunning() Then Return
-            If Not IO.File.Exists(tmpDirectory & fn) Then
-                UnZip(Nothing, "-x --i """ & targetFile & """ """ & tmpDirectory & """ """ & fn.Replace("\", "/") & """", Nothing, 0)
-            End If
-            fn = tmpDirectory & fn
-        ElseIf targetType = 4 Then
-            If UnrarGetRunning() Then Return
-            If Not IO.File.Exists(tmpDirectory & fn) Then
-                Unrar(Nothing, "-x --i """ & targetFile & """ """ & tmpDirectory & """ """ & fn.Replace("\", "/") & """", Nothing, 0)
-            End If
-            fn = tmpDirectory & fn
-        End If
-
         '// HD Photoの表示
         Try
             If fn.ToLower.EndsWith(".wdp") Or fn.ToLower.EndsWith(".hdp") Then

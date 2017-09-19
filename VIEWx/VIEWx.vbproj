@@ -106,8 +106,6 @@
     <Compile Include="Func.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="getFilesLha.vb" />
-    <Compile Include="getFilesRar.vb" />
     <Compile Include="hdp2bmp.vb" />
     <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -125,7 +123,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="getFilesZip.vb" />
     <Compile Include="xxxxConfig.vb" />
   </ItemGroup>
   <ItemGroup>
