@@ -4,24 +4,6 @@ Partial Class FormMain
 
     '// 画像表示
     Public Sub Fn_LoadImage(ByVal fn As String, ByVal pic As PictureBox)
-        '// HD Photoの表示
-        Try
-            If fn.ToLower.EndsWith(".wdp") Or fn.ToLower.EndsWith(".hdp") Then
-                'hdp2bmp.hdp2bmp(fileName, 1)
-            Else
-                pic.Image = System.Drawing.Image.FromStream(New FileStream(fn, FileMode.Open, FileAccess.Read))
-            End If
-
-            If mnuViewActual.Checked Then
-                pic.Width = pic.Image.Width
-                pic.Height = pic.Image.Height
-                pic.Left = (pic.Parent.Width - pic.Width) / 2
-                pic.Top = (pic.Parent.Height - pic.Height) / 2
-            End If
-        Catch ex As Exception
-            pic.Image = pic.ErrorImage
-        End Try
-
         '// [ウィンドウに収める]の処理
         If mnuViewInWindow.Checked Then mnuViewInWindow_Click(Nothing, Nothing)
 
