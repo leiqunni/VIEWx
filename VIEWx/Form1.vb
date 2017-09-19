@@ -110,6 +110,13 @@ Public Class Form1
         Fn_OpenFileDialog()
     End Sub
 
+    '// [ファイル]-[削除]
+    Private Sub mnuFileDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuFileDelete.Click
+        fs1.Close()
+        fs1.Dispose()
+        My.Computer.FileSystem.DeleteFile(fileEntries(HScrollBar.Value), FileIO.UIOption.AllDialogs, FileIO.RecycleOption.SendToRecycleBin, FileIO.UICancelOption.ThrowException)
+    End Sub
+
     Private Sub mnuFileExit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuFileExit.Click
         End
     End Sub
@@ -136,6 +143,24 @@ Public Class Form1
 
     Private Sub mnuViewHScrollBar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuViewHScrollBar.Click
         Fn_HScrollBar(Not HScrollBar1.Visible)
+    End Sub
+
+    '// [表示]-[ツール バー]
+    Private Sub mnuViewToolBar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuViewToolBar.Click
+        If mnuViewToolBar.Checked Then
+            'ToolStripContainer1.TopToolStripPanel.Hide()
+            'ToolStripContainer1.LeftToolStripPanel.Hide()
+            'ToolStripContainer1.RightToolStripPanel.Hide()
+            ToolStripContainer1.BottomToolStripPanel.Hide()
+            mnuViewToolBar.Checked = False
+        Else
+            'ToolStripContainer1.TopToolStripPanel.Show()
+            'ToolStripContainer1.LeftToolStripPanel.Show()
+            'ToolStripContainer1.RightToolStripPanel.Show()
+            'ToolStripContainer1.BottomToolStripPanel.Location(New System.Drawing.Point(12, 9))
+            ToolStripContainer1.BottomToolStripPanel.Show()
+            mnuViewToolBar.Checked = True
+        End If
     End Sub
 
     Private Sub mnuViewStatus_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuViewStatusBar.Click
@@ -184,6 +209,20 @@ Public Class Form1
 
     Private Sub mnuViewSortDesc_Click(sender As System.Object, e As System.EventArgs) Handles mnuViewSortDesc.Click
         Fn_Sort(My.Settings.SortType, SortOrder.Descending)
+    End Sub
+
+    '// [表示]-[全画面表示]
+    Private Sub mnuViewFullScreen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuViewFullScreen.Click
+        If mnuViewFullScreen.Checked Then
+            Me.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable
+            Me.WindowState = FormWindowState.Normal
+            mnuViewFullScreen.Checked = False
+        Else
+            Me.WindowState = FormWindowState.Normal
+            Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+            Me.WindowState = FormWindowState.Maximized
+            mnuViewFullScreen.Checked = True
+        End If
     End Sub
 
 #End Region
@@ -237,7 +276,89 @@ Public Class Form1
 
 #End Region
 
-  
+
+
+    '// [ツールバー]-[前のイメージ]
+    Private Sub tsbPrev_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbPrev.Click
+        prevPicture()
+    End Sub
+
+    '// [ツールバー]-[次のイメージ]
+    Private Sub tsbNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbNext.Click
+        nextPicture()
+    End Sub
+
+    '// [ツール バー]-[ウィンドウに合わせる]
+    Private Sub tsbBestfit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbBestfit.Click
+        Fn_Bestfit()
+    End Sub
+
+    '// [ツール バー]-[ウィンドウに収める]
+    Private Sub tsbInWindow_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbInWindow.Click
+        mnuViewInWindow_Click(sender, e)
+    End Sub
+
+    '// [ツール バー]-[原寸大]
+    Private Sub tsbActual_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbActual.Click
+        Fn_Actual()
+    End Sub
+
+    '// [ツールバー]-[スライド ショー]
+    Private Sub tsbSlideShow_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbSlideShow.Click
+        mnuFileSlideShow_Click(Nothing, Nothing)
+    End Sub
+
+    Private _zoom As Double = 1.0
+
+    Private Sub Fn_Zoom(ByVal value As Double)
+        Fn_Actual()
+        _zoom += value
+        PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+        PictureBox1.Size = New Size(PictureBox1.Image.Size.Width * _zoom, PictureBox1.Image.Size.Height * _zoom)
+    End Sub
+
+    '// [ツールバー]-[拡大]
+    Private Sub tsbZoomIn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbZoomIn.Click
+        Fn_Zoom(0.1)
+    End Sub
+
+    '// [ツールバー]-[縮小]
+    Private Sub tsbZoomOut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbZoomOut.Click
+        Fn_Zoom(-0.1)
+    End Sub
+
+    Private Sub ToolStripContainer1_LeftToolStripPanel_Click(sender As Object, e As EventArgs) Handles ToolStripContainer1.LeftToolStripPanel.Click
+
+    End Sub
+
+    '// [ツールバー]-[右回りに回転]
+    Private Sub tsbRRot_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbRRot.Click
+        Fn_RotateRight()
+    End Sub
+
+    '// [ツールバー]-[左りに回転]
+    Private Sub tsbLRot_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbLRot.Click
+        Fn_RotateLeft()
+    End Sub
+
+    '// [ツールバー]-[削除]
+    Private Sub tbsDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbsDel.Click
+        mnuFileDelete_Click(Nothing, Nothing)
+    End Sub
+
+    '// [ツールバー]-[ヘルプ]
+    Private Sub tsbHelp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbHelp.Click
+        mnuHelpHelp_Click(Nothing, Nothing)
+    End Sub
+
+
+
+
+
+
+
+
+
 
 End Class
 

@@ -240,3 +240,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+VIEWx_/
+VIEWx_/*
+
