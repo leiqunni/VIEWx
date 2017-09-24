@@ -129,6 +129,18 @@ Partial Class Form1
         End If
     End Sub
 
+    Private Sub fn_Actual()
+        Fn_SizeMode(PictureBoxSizeMode.AutoSize)
+    End Sub
+
+    Private Sub fn_Bestfit()
+        Fn_SizeMode(PictureBoxSizeMode.Zoom)
+    End Sub
+
+    Private Sub fn_Stretch()
+        Fn_SizeMode(PictureBoxSizeMode.StretchImage)
+    End Sub
+
     Private Sub Fn_SizeMode(ByVal v As PictureBoxSizeMode)
         PictureBox1.SizeMode = v
         Select Case v
@@ -198,6 +210,24 @@ Partial Class Form1
                 KeyConf.Add(key, param(2).ToLower.Trim)
             End If
         Next
+    End Sub
+
+    Private Sub fn_RotateLeft()
+        If PictureBox1.Image Is Nothing Then
+            Return
+        End If
+
+        PictureBox1.Image.RotateFlip(RotateFlipType.Rotate270FlipNone)
+        PictureBox1.Refresh()
+    End Sub
+
+    Private Sub fn_RotateRight()
+        If PictureBox1.Image Is Nothing Then
+            Return
+        End If
+
+        PictureBox1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone)
+        PictureBox1.Refresh()
     End Sub
 
 End Class

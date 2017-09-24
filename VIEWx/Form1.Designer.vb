@@ -26,6 +26,8 @@ Partial Class Form1
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.mnuFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuFileOpen = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuFileDelete = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuFileExit = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuEdit = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuEditCopyPath = New System.Windows.Forms.ToolStripMenuItem()
@@ -33,6 +35,7 @@ Partial Class Form1
         Me.mnuView = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuViewMenuBar = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuViewHScrollBar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuViewToolBar = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuViewStatusBar = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuView_0 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuViewActual = New System.Windows.Forms.ToolStripMenuItem()
@@ -64,9 +67,8 @@ Partial Class Form1
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsbActual = New System.Windows.Forms.ToolStripButton()
         Me.tsbBestfit = New System.Windows.Forms.ToolStripButton()
-        Me.tsbInWindow = New System.Windows.Forms.ToolStripButton()
-        Me.tsbSlideShow = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbStretch = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsbZoomIn = New System.Windows.Forms.ToolStripButton()
         Me.tsbZoomOut = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
@@ -75,9 +77,6 @@ Partial Class Form1
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.tbsDel = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsbHelp = New System.Windows.Forms.ToolStripButton()
-        Me.DeleteFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -97,7 +96,7 @@ Partial Class Form1
         '
         'mnuFile
         '
-        Me.mnuFile.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuFileOpen, Me.DeleteFileToolStripMenuItem, Me.tsSeparator1, Me.mnuFileExit})
+        Me.mnuFile.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuFileOpen, Me.mnuFileDelete, Me.tsSeparator1, Me.mnuFileExit})
         Me.mnuFile.Name = "mnuFile"
         Me.mnuFile.Size = New System.Drawing.Size(39, 20)
         Me.mnuFile.Text = "&File"
@@ -105,13 +104,24 @@ Partial Class Form1
         'mnuFileOpen
         '
         Me.mnuFileOpen.Name = "mnuFileOpen"
-        Me.mnuFileOpen.Size = New System.Drawing.Size(152, 22)
+        Me.mnuFileOpen.Size = New System.Drawing.Size(148, 22)
         Me.mnuFileOpen.Text = "&Open..."
+        '
+        'mnuFileDelete
+        '
+        Me.mnuFileDelete.Name = "mnuFileDelete"
+        Me.mnuFileDelete.Size = New System.Drawing.Size(148, 22)
+        Me.mnuFileDelete.Text = "&Delete File..."
+        '
+        'tsSeparator1
+        '
+        Me.tsSeparator1.Name = "tsSeparator1"
+        Me.tsSeparator1.Size = New System.Drawing.Size(145, 6)
         '
         'mnuFileExit
         '
         Me.mnuFileExit.Name = "mnuFileExit"
-        Me.mnuFileExit.Size = New System.Drawing.Size(152, 22)
+        Me.mnuFileExit.Size = New System.Drawing.Size(148, 22)
         Me.mnuFileExit.Text = "&Exit"
         '
         'mnuEdit
@@ -135,7 +145,7 @@ Partial Class Form1
         '
         'mnuView
         '
-        Me.mnuView.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuViewMenuBar, Me.mnuViewHScrollBar, Me.mnuViewStatusBar, Me.mnuView_0, Me.mnuViewActual, Me.mnuViewZoom, Me.mnuViewStretch, Me.mnuView_1, Me.mnuViewSort})
+        Me.mnuView.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuViewMenuBar, Me.mnuViewHScrollBar, Me.mnuViewToolBar, Me.mnuViewStatusBar, Me.mnuView_0, Me.mnuViewActual, Me.mnuViewZoom, Me.mnuViewStretch, Me.mnuView_1, Me.mnuViewSort})
         Me.mnuView.Name = "mnuView"
         Me.mnuView.Size = New System.Drawing.Size(47, 20)
         Me.mnuView.Text = "&View"
@@ -144,59 +154,65 @@ Partial Class Form1
         '
         Me.mnuViewMenuBar.CheckOnClick = True
         Me.mnuViewMenuBar.Name = "mnuViewMenuBar"
-        Me.mnuViewMenuBar.Size = New System.Drawing.Size(152, 22)
+        Me.mnuViewMenuBar.Size = New System.Drawing.Size(136, 22)
         Me.mnuViewMenuBar.Text = "&Menu Bar"
         '
         'mnuViewHScrollBar
         '
         Me.mnuViewHScrollBar.CheckOnClick = True
         Me.mnuViewHScrollBar.Name = "mnuViewHScrollBar"
-        Me.mnuViewHScrollBar.Size = New System.Drawing.Size(152, 22)
+        Me.mnuViewHScrollBar.Size = New System.Drawing.Size(136, 22)
         Me.mnuViewHScrollBar.Text = "Sc&roll Bar"
+        '
+        'mnuViewToolBar
+        '
+        Me.mnuViewToolBar.Name = "mnuViewToolBar"
+        Me.mnuViewToolBar.Size = New System.Drawing.Size(136, 22)
+        Me.mnuViewToolBar.Text = "&Tool Bar"
         '
         'mnuViewStatusBar
         '
         Me.mnuViewStatusBar.CheckOnClick = True
         Me.mnuViewStatusBar.Name = "mnuViewStatusBar"
-        Me.mnuViewStatusBar.Size = New System.Drawing.Size(152, 22)
+        Me.mnuViewStatusBar.Size = New System.Drawing.Size(136, 22)
         Me.mnuViewStatusBar.Text = "Sta&tus Bar"
         '
         'mnuView_0
         '
         Me.mnuView_0.Name = "mnuView_0"
-        Me.mnuView_0.Size = New System.Drawing.Size(149, 6)
+        Me.mnuView_0.Size = New System.Drawing.Size(133, 6)
         '
         'mnuViewActual
         '
         Me.mnuViewActual.CheckOnClick = True
         Me.mnuViewActual.Name = "mnuViewActual"
-        Me.mnuViewActual.Size = New System.Drawing.Size(152, 22)
+        Me.mnuViewActual.Size = New System.Drawing.Size(136, 22)
         Me.mnuViewActual.Text = "&Actual"
         '
         'mnuViewZoom
         '
         Me.mnuViewZoom.CheckOnClick = True
         Me.mnuViewZoom.Name = "mnuViewZoom"
-        Me.mnuViewZoom.Size = New System.Drawing.Size(152, 22)
+        Me.mnuViewZoom.Size = New System.Drawing.Size(136, 22)
         Me.mnuViewZoom.Text = "&Zoom"
         '
         'mnuViewStretch
         '
         Me.mnuViewStretch.CheckOnClick = True
         Me.mnuViewStretch.Name = "mnuViewStretch"
-        Me.mnuViewStretch.Size = New System.Drawing.Size(152, 22)
+        Me.mnuViewStretch.Size = New System.Drawing.Size(136, 22)
         Me.mnuViewStretch.Text = "&Stretch"
         '
         'mnuView_1
         '
         Me.mnuView_1.Name = "mnuView_1"
-        Me.mnuView_1.Size = New System.Drawing.Size(149, 6)
+        Me.mnuView_1.Size = New System.Drawing.Size(133, 6)
         '
         'mnuViewSort
         '
         Me.mnuViewSort.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuViewSortNone, Me.mnuViewSortName, Me.mnuViewSortNameNum, Me.mnuViewSortDate, Me.mnuViewSortType, Me.mnuViewSortSize, Me.mnuViewSort_0, Me.mnuViewSortAsc, Me.mnuViewSortDesc})
         Me.mnuViewSort.Name = "mnuViewSort"
-        Me.mnuViewSort.Size = New System.Drawing.Size(152, 22)
+        Me.mnuViewSort.Size = New System.Drawing.Size(136, 22)
         Me.mnuViewSort.Text = "Sort by"
         '
         'mnuViewSortNone
@@ -276,7 +292,7 @@ Partial Class Form1
         'mnuHelpAbout
         '
         Me.mnuHelpAbout.Name = "mnuHelpAbout"
-        Me.mnuHelpAbout.Size = New System.Drawing.Size(108, 22)
+        Me.mnuHelpAbout.Size = New System.Drawing.Size(152, 22)
         Me.mnuHelpAbout.Text = "&About"
         '
         'StatusStrip1
@@ -316,7 +332,7 @@ Partial Class Form1
         'tsToolBar
         '
         Me.tsToolBar.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.tsToolBar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbPrev, Me.tsbNext, Me.ToolStripSeparator6, Me.tsbActual, Me.tsbBestfit, Me.tsbInWindow, Me.tsbSlideShow, Me.ToolStripSeparator3, Me.tsbZoomIn, Me.tsbZoomOut, Me.ToolStripSeparator7, Me.tsbLRot, Me.tsbRRot, Me.ToolStripSeparator4, Me.tbsDel, Me.ToolStripSeparator5, Me.tsbHelp})
+        Me.tsToolBar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbPrev, Me.tsbNext, Me.ToolStripSeparator6, Me.tsbActual, Me.tsbBestfit, Me.tsbStretch, Me.ToolStripSeparator2, Me.tsbZoomIn, Me.tsbZoomOut, Me.ToolStripSeparator7, Me.tsbLRot, Me.tsbRRot, Me.ToolStripSeparator4, Me.tbsDel, Me.ToolStripSeparator5})
         Me.tsToolBar.Location = New System.Drawing.Point(0, 193)
         Me.tsToolBar.Name = "tsToolBar"
         Me.tsToolBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
@@ -363,30 +379,21 @@ Partial Class Form1
         Me.tsbBestfit.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbBestfit.Name = "tsbBestfit"
         Me.tsbBestfit.Size = New System.Drawing.Size(23, 22)
-        Me.tsbBestfit.Text = "ウィンドウに合わせる"
+        Me.tsbBestfit.Text = "ウィンドウに収める"
         '
-        'tsbInWindow
+        'tsbStretch
         '
-        Me.tsbInWindow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbInWindow.Image = CType(resources.GetObject("tsbInWindow.Image"), System.Drawing.Image)
-        Me.tsbInWindow.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbInWindow.Name = "tsbInWindow"
-        Me.tsbInWindow.Size = New System.Drawing.Size(23, 22)
-        Me.tsbInWindow.Text = "ウィンドウに収める"
+        Me.tsbStretch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbStretch.Image = CType(resources.GetObject("tsbStretch.Image"), System.Drawing.Image)
+        Me.tsbStretch.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbStretch.Name = "tsbStretch"
+        Me.tsbStretch.Size = New System.Drawing.Size(23, 22)
+        Me.tsbStretch.Text = "ウィンドウに合わせる"
         '
-        'tsbSlideShow
+        'ToolStripSeparator2
         '
-        Me.tsbSlideShow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbSlideShow.Image = CType(resources.GetObject("tsbSlideShow.Image"), System.Drawing.Image)
-        Me.tsbSlideShow.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbSlideShow.Name = "tsbSlideShow"
-        Me.tsbSlideShow.Size = New System.Drawing.Size(23, 22)
-        Me.tsbSlideShow.Text = "ToolStripButton1"
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
         '
         'tsbZoomIn
         '
@@ -447,26 +454,6 @@ Partial Class Form1
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
         Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
-        '
-        'tsbHelp
-        '
-        Me.tsbHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbHelp.Image = CType(resources.GetObject("tsbHelp.Image"), System.Drawing.Image)
-        Me.tsbHelp.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbHelp.Name = "tsbHelp"
-        Me.tsbHelp.Size = New System.Drawing.Size(23, 22)
-        Me.tsbHelp.Text = "ヘルプ"
-        '
-        'DeleteFileToolStripMenuItem
-        '
-        Me.DeleteFileToolStripMenuItem.Name = "DeleteFileToolStripMenuItem"
-        Me.DeleteFileToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.DeleteFileToolStripMenuItem.Text = "&Delete File..."
-        '
-        'tsSeparator1
-        '
-        Me.tsSeparator1.Name = "tsSeparator1"
-        Me.tsSeparator1.Size = New System.Drawing.Size(149, 6)
         '
         'Panel1
         '
@@ -546,10 +533,7 @@ Partial Class Form1
     Friend WithEvents tsbNext As ToolStripButton
     Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
     Friend WithEvents tsbActual As ToolStripButton
-    Friend WithEvents tsbBestfit As ToolStripButton
-    Friend WithEvents tsbInWindow As ToolStripButton
-    Friend WithEvents tsbSlideShow As ToolStripButton
-    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents tsbStretch As ToolStripButton
     Friend WithEvents tsbZoomIn As ToolStripButton
     Friend WithEvents tsbZoomOut As ToolStripButton
     Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
@@ -558,8 +542,10 @@ Partial Class Form1
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
     Friend WithEvents tbsDel As ToolStripButton
     Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
-    Friend WithEvents tsbHelp As ToolStripButton
-    Friend WithEvents DeleteFileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents mnuFileDelete As ToolStripMenuItem
     Friend WithEvents tsSeparator1 As ToolStripSeparator
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents mnuViewToolBar As ToolStripMenuItem
+    Friend WithEvents tsbBestfit As ToolStripButton
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
 End Class
