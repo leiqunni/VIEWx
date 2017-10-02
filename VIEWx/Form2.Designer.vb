@@ -28,7 +28,6 @@ Partial Class Form2
         Me.grpExtension = New System.Windows.Forms.GroupBox()
         Me.txtExtension = New System.Windows.Forms.TextBox()
         Me.chbDirRecur = New System.Windows.Forms.CheckBox()
-        Me.chbGlass = New System.Windows.Forms.CheckBox()
         Me.grpTextFormat = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -58,7 +57,6 @@ Partial Class Form2
         '
         Me.TabPage2.Controls.Add(Me.grpExtension)
         Me.TabPage2.Controls.Add(Me.chbDirRecur)
-        Me.TabPage2.Controls.Add(Me.chbGlass)
         Me.TabPage2.Controls.Add(Me.grpTextFormat)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
@@ -99,16 +97,6 @@ Partial Class Form2
         Me.chbDirRecur.TabIndex = 7
         Me.chbDirRecur.Text = "&Directory Reccursion"
         Me.chbDirRecur.UseVisualStyleBackColor = True
-        '
-        'chbGlass
-        '
-        Me.chbGlass.AutoSize = True
-        Me.chbGlass.Location = New System.Drawing.Point(8, 129)
-        Me.chbGlass.Name = "chbGlass"
-        Me.chbGlass.Size = New System.Drawing.Size(81, 16)
-        Me.chbGlass.TabIndex = 6
-        Me.chbGlass.Text = "&Aero Glass"
-        Me.chbGlass.UseVisualStyleBackColor = True
         '
         'grpTextFormat
         '
@@ -214,7 +202,6 @@ Partial Class Form2
     Friend WithEvents grpTextFormat As System.Windows.Forms.GroupBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents chbGlass As System.Windows.Forms.CheckBox
     Friend WithEvents chbDirRecur As System.Windows.Forms.CheckBox
     Friend WithEvents grpExtension As System.Windows.Forms.GroupBox
     Friend WithEvents txtExtension As System.Windows.Forms.TextBox

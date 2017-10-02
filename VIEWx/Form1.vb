@@ -222,8 +222,7 @@ Public Class Form1
 #End Region
 
     Private Sub mnuHelpAbout_Click(sender As System.Object, e As System.EventArgs) Handles mnuHelpAbout.Click
-        Me.Text = "About dePic"
-        lblStatus.Text = ""
+        Form3.ShowDialog()
     End Sub
 
 #End Region
@@ -265,29 +264,49 @@ Public Class Form1
 
 #Region "Tool Bar"
 
-    '// [ツールバー]-[前のイメージ]
+    ''' <summary>
+    ''' [ToolBar]-[Prev]
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub tsbPrev_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbPrev.Click
         Fn_Prev()
     End Sub
 
-    '// [ツールバー]-[次のイメージ]
+    ''' <summary>
+    ''' [ToolBar]-[Next]
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub tsbNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbNext.Click
         Fn_Next()
     End Sub
 
-    '// [ツール バー]-[原寸大]
+    ''' <summary>
+    ''' [ToolBar]-[Actual]
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub tsbActual_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbActual.Click
         Fn_Actual()
     End Sub
 
-    '// [Stretch]
-    Private Sub tsbStretch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbStretch.Click
-        fn_Stretch()
-    End Sub
-
-    '// [ツール バー]-[ウィンドウに収める]
+    ''' <summary>
+    ''' [ToolBar]-[Bestfit]
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub tsbBestfitClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbBestfit.Click
         fn_Bestfit()
+    End Sub
+
+    ''' <summary>
+    ''' [ToolBar]-[Strech]
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub tsbStretch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbStretch.Click
+        fn_Stretch()
     End Sub
 
     Private _zoom As Double = 1.0
@@ -299,12 +318,18 @@ Public Class Form1
         PictureBox1.Size = New Size(PictureBox1.Image.Size.Width * _zoom, PictureBox1.Image.Size.Height * _zoom)
     End Sub
 
-    '// [ツールバー]-[拡大]
+    ''' <summary>
+    ''' [ToolBar]-[ZoomIn]
+    ''' </summary>
+    ''' <param name="sender"></param>
     Private Sub tsbZoomIn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbZoomIn.Click
         Fn_Zoom(0.1)
     End Sub
 
-    '// [ツールバー]-[縮小]
+    ''' <summary>
+    ''' [ToolBar]-[ZoomOut]
+    ''' </summary>
+    ''' <param name="sender"></param>
     Private Sub tsbZoomOut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbZoomOut.Click
         Fn_Zoom(-0.1)
     End Sub

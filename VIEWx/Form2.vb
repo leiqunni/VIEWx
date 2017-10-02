@@ -5,7 +5,6 @@
         txtTitle.Text = My.Settings.TitleText
         txtStatus.Text = My.Settings.StatusText
         txtExtension.Text = My.Settings.Extension
-        chbGlass.Checked = My.Settings.Glass
         chbDirRecur.Checked = My.Settings.DirRecur
     End Sub
 
@@ -14,7 +13,6 @@
         My.Settings.TitleText = txtTitle.Text
         My.Settings.StatusText = txtStatus.Text
         My.Settings.Extension = txtExtension.Text
-        My.Settings.Glass = chbGlass.Checked
         My.Settings.DirRecur = chbDirRecur.Checked
     End Sub
 
