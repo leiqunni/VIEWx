@@ -51,5 +51,8 @@
     <Setting Name="SortOrder" Type="System.Windows.Forms.SortOrder" Scope="User">
       <Value Profile="(Default)">Ascending</Value>
     </Setting>
+    <Setting Name="ToolBar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

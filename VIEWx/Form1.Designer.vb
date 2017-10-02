@@ -76,7 +76,6 @@ Partial Class Form1
         Me.tsbRRot = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.tbsDel = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -292,7 +291,7 @@ Partial Class Form1
         'mnuHelpAbout
         '
         Me.mnuHelpAbout.Name = "mnuHelpAbout"
-        Me.mnuHelpAbout.Size = New System.Drawing.Size(152, 22)
+        Me.mnuHelpAbout.Size = New System.Drawing.Size(108, 22)
         Me.mnuHelpAbout.Text = "&About"
         '
         'StatusStrip1
@@ -332,7 +331,8 @@ Partial Class Form1
         'tsToolBar
         '
         Me.tsToolBar.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.tsToolBar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbPrev, Me.tsbNext, Me.ToolStripSeparator6, Me.tsbActual, Me.tsbBestfit, Me.tsbStretch, Me.ToolStripSeparator2, Me.tsbZoomIn, Me.tsbZoomOut, Me.ToolStripSeparator7, Me.tsbLRot, Me.tsbRRot, Me.ToolStripSeparator4, Me.tbsDel, Me.ToolStripSeparator5})
+        Me.tsToolBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.tsToolBar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbPrev, Me.tsbNext, Me.ToolStripSeparator6, Me.tsbActual, Me.tsbBestfit, Me.tsbStretch, Me.ToolStripSeparator2, Me.tsbZoomIn, Me.tsbZoomOut, Me.ToolStripSeparator7, Me.tsbLRot, Me.tsbRRot, Me.ToolStripSeparator4, Me.tbsDel})
         Me.tsToolBar.Location = New System.Drawing.Point(0, 193)
         Me.tsToolBar.Name = "tsToolBar"
         Me.tsToolBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
@@ -450,11 +450,6 @@ Partial Class Form1
         Me.tbsDel.Size = New System.Drawing.Size(23, 22)
         Me.tbsDel.Text = "削除"
         '
-        'ToolStripSeparator5
-        '
-        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
-        '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.PictureBox1)
@@ -480,7 +475,7 @@ Partial Class Form1
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "dePic"
+        Me.Text = "VIEWx"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
@@ -541,7 +536,6 @@ Partial Class Form1
     Friend WithEvents tsbRRot As ToolStripButton
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
     Friend WithEvents tbsDel As ToolStripButton
-    Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
     Friend WithEvents mnuFileDelete As ToolStripMenuItem
     Friend WithEvents tsSeparator1 As ToolStripSeparator
     Friend WithEvents Panel1 As Panel

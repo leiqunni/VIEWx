@@ -41,6 +41,11 @@ Public Class Form1
         If PictureBox1.SizeMode = PictureBoxSizeMode.AutoSize Then
             Control_Centered(PictureBox1.Bounds)
         End If
+        If tsToolBar.Visible Then
+            Dim p = (tsToolBar.Width - 250) / 2
+            Dim pad As Padding = New Padding(p, 0, 1, 0)
+            tsToolBar.Padding = pad
+        End If
     End Sub
 
     Private Sub Form1_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles Me.DragDrop

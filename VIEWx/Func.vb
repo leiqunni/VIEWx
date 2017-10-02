@@ -9,6 +9,7 @@ Partial Class Form1
         Fn_SizeMode(My.Settings.SizeMode)
         Fn_MenuBar(My.Settings.MenuBar)
         Fn_HScrollBar(My.Settings.HScrollBar)
+        Fn_ToolBar(My.Settings.ToolBar)
         Fn_StatusBar(My.Settings.StatusBar)
         Fn_SetSortType(My.Settings.SortType)
         Fn_SetSortOrder(My.Settings.SortOrder)
@@ -165,6 +166,12 @@ Partial Class Form1
         HScrollBar1.Visible = v
         mnuViewHScrollBar.Checked = v
         My.Settings.HScrollBar = v
+    End Sub
+
+    Private Sub Fn_ToolBar(ByVal v As Boolean)
+        tsToolBar.Visible = v
+        mnuViewToolBar.Checked = v
+        My.Settings.ToolBar = v
     End Sub
 
     Private Sub Fn_StatusBar(ByVal v As Boolean)

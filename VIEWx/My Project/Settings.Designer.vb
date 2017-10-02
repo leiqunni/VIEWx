@@ -222,6 +222,18 @@ Namespace My
                 Me("SortOrder") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property ToolBar() As Boolean
+            Get
+                Return CType(Me("ToolBar"),Boolean)
+            End Get
+            Set
+                Me("ToolBar") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
