@@ -1,6 +1,6 @@
 ﻿Partial Class Form1
 
-    Declare Unicode Function StrCmpLogicalW Lib "shlwapi.dll" (ByVal s1 As String, ByVal s2 As String) As Int32
+    'Declare Unicode Function StrCmpLogicalW Lib "shlwapi.dll" (ByVal s1 As String, ByVal s2 As String) As Int32
 
     Enum SortType
         [None]
@@ -65,6 +65,9 @@
     Public Class OrderByNameNum
         Implements System.Collections.Generic.IComparer(Of IO.FileInfo)
         Private order As Integer
+        <System.Runtime.InteropServices.DllImport("shlwapi.dll", CharSet:=System.Runtime.InteropServices.CharSet.Unicode, ExactSpelling:=True)>
+        Private Shared Function StrCmpLogicalW(x As String, y As String) As Integer
+        End Function
         Public Sub New(ByVal so As SortOrder)
             order = If(so = SortOrder.Ascending, 1, -1)
         End Sub

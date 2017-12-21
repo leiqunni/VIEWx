@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' アセンブリ属性の値を確認します。
 
 <Assembly: AssemblyTitle("VIEWx")>
-<Assembly: AssemblyDescription("DarkEra Picture Viewer")> 
+<Assembly: AssemblyDescription("DarkEra Image Viewer")>
 <Assembly: AssemblyCompany("DarkEra Software")>
 <Assembly: AssemblyProduct("VIEWx")>
 <Assembly: AssemblyCopyright("Copyright © 793 ◆7BJkZFw08A / DarkEra Software 2012")> 

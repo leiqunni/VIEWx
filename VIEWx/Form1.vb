@@ -344,7 +344,10 @@ Public Class Form1
         Fn_RotateLeft()
     End Sub
 
-    '// [ツールバー]-[削除]
+    ''' <summary>
+    ''' [ToolBar]-[Delete]
+    ''' </summary>
+    ''' <param name="sender"></param>
     Private Sub tbsDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbsDel.Click
         mnuFileDelete_Click(Nothing, Nothing)
     End Sub

@@ -34,13 +34,10 @@
       <Value Profile="(Default)">bmp emf gif ico jpg png tiff</Value>
     </Setting>
     <Setting Name="TitleText" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%name% [%current%/%count%] - dePic</Value>
+      <Value Profile="(Default)">%name% [%current%/%count%] - VIEWx</Value>
     </Setting>
     <Setting Name="StatusText" Type="System.String" Scope="User">
       <Value Profile="(Default)">Size %width% x %height% Modefied %modefied% Length %length_ki% KB</Value>
-    </Setting>
-    <Setting Name="Glass" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DirRecur" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
